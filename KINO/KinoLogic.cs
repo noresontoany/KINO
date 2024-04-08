@@ -8,60 +8,93 @@ namespace KINO
 {
     public class KinoLogic
     {
-        public class Fruit {
-            public int Ripeness = 0;
+        public class Kino {
+            public int Year = 0;
             public virtual String GetInfo()
             {
-                var str = String.Format("\nСпелость: {0}", this.Ripeness);
+                var str = String.Format("\n:Год выпуска {0}", this.Year);
                 return str;
             }
         }
 
-        public class Mandarin : Fruit
+        public class TVshow : Kino
         {
-            public int SliceCount = 0;
-            public bool WithLeaf = false;
+            public int Duration;
+            public int Airtime;
+
+            public TVshow(int year, int duration, int airtime)
+            {
+                this.Year = year;
+                this.Duration = duration;
+                this.Airtime = airtime;
+            }
 
             public override String GetInfo()
             {
-                var str = "Я мандарин";
+                var str = "Я Телепередача";
                 str += base.GetInfo();
                 // Добавил
-                str += String.Format("\nКоличество долек: {0}", this.SliceCount);
-                str += String.Format("\nНаличие листика: {0}", this.WithLeaf);
+                str += String.Format("\nПродолжительность лет {0}", this.Duration);
+                str += String.Format("\nЭфирное время", this.Airtime);
                 return str;
             }
         }
 
-        public enum GrapesType { black, green };
-        public class Grapes : Fruit
+  
+        public class Movie : Kino
         {
-            public int BerriesNumber = 0;
-            public GrapesType type = GrapesType.black;
+            public int MovieLen;
+            public int CountAwards;
+            public int MovieType;
+
+            public Movie(int Year, int MovieType, int MovieLen, int CountAwards)
+            {
+                this.Year = Year;
+                this.MovieType = MovieType;
+                this.MovieLen = MovieLen;
+                this.CountAwards = CountAwards;
+
+            }
+
+            private Dictionary<int, string> MovieTypes = new Dictionary<int, string>()
+            {
+                [1] = "Drama",
+                [2] = "Fantasy",
+                [3] = "Historical",
+                [4] = "Horror",
+                [5] = "Musical",
+            };
 
             public override String GetInfo()
             {
-                var str = "Я Виноград";
+                var str = "Я Фильм";
                 str += base.GetInfo();
                 // Добавил
-                str += String.Format("\nКоличество ягод: {0}", this.BerriesNumber);
-                str += String.Format("\nТип: {0}", this.type);
+                str += String.Format("\nКоличество Наград: {0}", this.CountAwards);
+                str += String.Format("\nХранометраж мин: {0}", this.MovieLen);
+                str += String.Format("\nЖанр {0}", this.MovieTypes[MovieType]);
                 return str;
             }
         }
 
-        public class Watermelon : Fruit
+        public class Show : Kino
         {
-            public int BonesNumber = 0;
-            public bool HasStripes = false;
+            public int Seasons;
+            public int Series;
+            public Show(int year, int seasons, int series)
+            {
+                Year = year;
+                Seasons = seasons;
+                Series = series;
+            }
 
             public override String GetInfo()
             {
-                var str = "Я Арбуз";
+                var str = "Я Сериал";
                 str += base.GetInfo();
                 // Добавил
-                str += String.Format("\nКоличество косточек: {0}", this.BonesNumber);
-                str += String.Format("\nНаличие полосок: {0}", this.HasStripes);
+                str += String.Format("\nКоличество сезонов: {0}", this.Seasons);
+                str += String.Format("\nКол-во серий серий: {0}", this.Series);
                 return str;
             }
         }

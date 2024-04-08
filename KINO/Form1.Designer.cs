@@ -40,7 +40,7 @@
             btnRefill.Name = "btnRefill";
             btnRefill.Size = new Size(407, 34);
             btnRefill.TabIndex = 0;
-            btnRefill.Text = "button1";
+            btnRefill.Text = "Заполняем";
             btnRefill.UseVisualStyleBackColor = true;
             btnRefill.Click += btnRefill_Click;
             // 
@@ -68,7 +68,7 @@
             btnGet.Name = "btnGet";
             btnGet.Size = new Size(144, 144);
             btnGet.TabIndex = 3;
-            btnGet.Text = "button1";
+            btnGet.Text = "Забираем";
             btnGet.UseVisualStyleBackColor = true;
             btnGet.Click += btnGet_Click;
             // 
