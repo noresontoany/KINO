@@ -32,6 +32,7 @@
             txtInfo = new RichTextBox();
             txtOut = new RichTextBox();
             btnGet = new Button();
+            KinoBar = new ProgressBar();
             SuspendLayout();
             // 
             // btnRefill
@@ -58,6 +59,7 @@
             // 
             txtOut.Location = new Point(120, 260);
             txtOut.Name = "txtOut";
+            txtOut.ReadOnly = true;
             txtOut.Size = new Size(249, 144);
             txtOut.TabIndex = 2;
             txtOut.Text = "";
@@ -72,11 +74,19 @@
             btnGet.UseVisualStyleBackColor = true;
             btnGet.Click += btnGet_Click;
             // 
+            // KinoBar
+            // 
+            KinoBar.Location = new Point(120, 197);
+            KinoBar.Name = "KinoBar";
+            KinoBar.Size = new Size(404, 34);
+            KinoBar.TabIndex = 4;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(KinoBar);
             Controls.Add(btnGet);
             Controls.Add(txtOut);
             Controls.Add(txtInfo);
@@ -92,5 +102,6 @@
         private RichTextBox txtInfo;
         private RichTextBox txtOut;
         private Button btnGet;
+        private ProgressBar KinoBar;
     }
 }

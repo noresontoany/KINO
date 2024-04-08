@@ -12,7 +12,9 @@ namespace KINO
 
         private void btnRefill_Click(object sender, EventArgs e)
         {
+
             this.KinoList.Clear();
+           
             var rnd = new Random();
             for (var i = 0; i < 10; ++i)
             {
@@ -30,6 +32,9 @@ namespace KINO
                         // появление других чисел маловероятно
                 }
             }
+            this.KinoBar.Maximum = KinoList.Count;
+            this.KinoBar.Value = KinoList.Count;
+
             ShowInfo();
         }
 
@@ -43,10 +48,7 @@ namespace KINO
             // пройдемся по всему списку
             foreach (var kino in this.KinoList)
             {
-                // помните, что в списки у нас лежат фрукты,
-                // то есть объекты типа Fruit
-                // поэтому чтобы проверить какой именно фрукт
-                // мы в данный момент обозреваем, мы используем ключевое слово is
+                
                 if (kino is TVshow) // читается почти как чистый инглиш, "если fruit есть Мандарин"
                 {
                     TVshowCount += 1;
@@ -81,7 +83,7 @@ namespace KINO
             // тут вам не реальность, взятие это на самом деле создание указателя на область в памяти
             // где хранится экземпляр класса, так что если хочешь удалить, делай это сам
             this.KinoList.RemoveAt(0);
-
+            this.KinoBar.Value = KinoList.Count;
             // ну а теперь предложим покупателю его фрукт
             txtOut.Text = kino.GetInfo();
 

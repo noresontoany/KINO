@@ -35,7 +35,7 @@ namespace KINO
                 str += base.GetInfo();
                 // Добавил
                 str += String.Format("\nПродолжительность лет {0}", this.Duration);
-                str += String.Format("\nЭфирное время", this.Airtime);
+                str += String.Format("\nЭфирное время {0}", this.Airtime);
                 return str;
             }
         }
