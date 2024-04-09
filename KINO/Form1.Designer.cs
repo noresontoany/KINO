@@ -33,13 +33,16 @@
             txtOut = new RichTextBox();
             btnGet = new Button();
             KinoBar = new ProgressBar();
+            kinoBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)kinoBox).BeginInit();
             SuspendLayout();
             // 
             // btnRefill
             // 
-            btnRefill.Location = new Point(120, 54);
+            btnRefill.Location = new Point(84, 32);
+            btnRefill.Margin = new Padding(2);
             btnRefill.Name = "btnRefill";
-            btnRefill.Size = new Size(407, 34);
+            btnRefill.Size = new Size(285, 20);
             btnRefill.TabIndex = 0;
             btnRefill.Text = "Заполняем";
             btnRefill.UseVisualStyleBackColor = true;
@@ -48,27 +51,30 @@
             // txtInfo
             // 
             txtInfo.BorderStyle = BorderStyle.None;
-            txtInfo.Location = new Point(120, 119);
+            txtInfo.Location = new Point(84, 71);
+            txtInfo.Margin = new Padding(2);
             txtInfo.Name = "txtInfo";
             txtInfo.ReadOnly = true;
-            txtInfo.Size = new Size(404, 85);
+            txtInfo.Size = new Size(283, 51);
             txtInfo.TabIndex = 1;
             txtInfo.Text = "";
             // 
             // txtOut
             // 
-            txtOut.Location = new Point(120, 260);
+            txtOut.Location = new Point(84, 156);
+            txtOut.Margin = new Padding(2);
             txtOut.Name = "txtOut";
             txtOut.ReadOnly = true;
-            txtOut.Size = new Size(249, 144);
+            txtOut.Size = new Size(176, 88);
             txtOut.TabIndex = 2;
             txtOut.Text = "";
             // 
             // btnGet
             // 
-            btnGet.Location = new Point(392, 260);
+            btnGet.Location = new Point(274, 156);
+            btnGet.Margin = new Padding(2);
             btnGet.Name = "btnGet";
-            btnGet.Size = new Size(144, 144);
+            btnGet.Size = new Size(101, 86);
             btnGet.TabIndex = 3;
             btnGet.Text = "Забираем";
             btnGet.UseVisualStyleBackColor = true;
@@ -76,23 +82,35 @@
             // 
             // KinoBar
             // 
-            KinoBar.Location = new Point(120, 197);
+            KinoBar.Location = new Point(84, 118);
+            KinoBar.Margin = new Padding(2);
             KinoBar.Name = "KinoBar";
-            KinoBar.Size = new Size(404, 34);
+            KinoBar.Size = new Size(283, 20);
             KinoBar.TabIndex = 4;
+            // 
+            // kinoBox
+            // 
+            kinoBox.Location = new Point(443, 31);
+            kinoBox.Name = "kinoBox";
+            kinoBox.Size = new Size(267, 213);
+            kinoBox.TabIndex = 5;
+            kinoBox.TabStop = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(743, 270);
+            Controls.Add(kinoBox);
             Controls.Add(KinoBar);
             Controls.Add(btnGet);
             Controls.Add(txtOut);
             Controls.Add(txtInfo);
             Controls.Add(btnRefill);
+            Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)kinoBox).EndInit();
             ResumeLayout(false);
         }
 
@@ -103,5 +121,6 @@
         private RichTextBox txtOut;
         private Button btnGet;
         private ProgressBar KinoBar;
+        private PictureBox kinoBox;
     }
 }

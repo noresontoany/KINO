@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 using static KINO.KinoLogic;
 
 namespace KINO
@@ -69,17 +70,70 @@ namespace KINO
             txtInfo.Text += String.Format("{0}\t{1}\t{2}", TVshowCount, MovieCount, ShowCount);
         }
 
+
+        private void getImg (String pathToFile)
+        {
+            try
+            {
+                // Retrieve the image.
+                Bitmap image = new Bitmap(@"img\tv\2.jpg", true);
+
+                int x, y;
+
+                // Loop through the images pixels to reset color.
+                for (x = 0; x < image.Width; x++)
+                {
+                    for (y = 0; y < image.Height; y++)
+                    {
+                        Color pixelColor = image.GetPixel(x, y);
+                        Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
+                        image.SetPixel(x, y, newColor);
+                    }
+                }
+
+                kinoBox.Image = image;
+            }
+   
+            catch (ArgumentException)
+            {
+                MessageBox.Show("There was an error." +
+                    "Check the path to the image file.");
+            }
+
+            
+
+
+        }
+
         private void btnGet_Click(object sender, EventArgs e)
         {
+            var rnd = new Random();
             // если список пуст, то напишем что пусто и выйдем из функции
             if (this.KinoList.Count == 0)
             {
                 txtOut.Text = "ѕусто Q_Q";
+
+                getImg(@"img\0.jpg");
                 return;
             }
 
             // вз€ли первый фрукт
             var kino = this.KinoList[0];
+
+            if (kino is TVshow)
+            {
+                getImg(@"img\tv\2.jpg");
+                //kinoBox.Image = getImg(string.Format("img\\tv\\{0}.jpg", rnd.Next(1, 10)));
+            }
+            else if (kino is Movie)
+            {
+                getImg(@"img\tv\2.jpg");
+                //kinoBox.Image = getImg(string.Format("img\\movie\\{0}.jpg", rnd.Next(1, 10)));
+            }
+            else if (kino is Show)
+            {
+                //kinoBox.Image = getImg(string.Format("img\\serial\\{0}.jpg", rnd.Next(1, 10)));
+            }
             // тут вам не реальность, вз€тие это на самом деле создание указател€ на область в пам€ти
             // где хранитс€ экземпл€р класса, так что если хочешь удалить, делай это сам
             this.KinoList.RemoveAt(0);
