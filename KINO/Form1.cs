@@ -30,16 +30,16 @@ namespace KINO
             {
                 switch (rnd.Next() % 3) 
                 {
-                    case 0: // если 0, то мандарин
+                    case 0: 
                         this.KinoList.Add(new TVshow(rnd.Next(1950, 2024), rnd.Next(1, 40), rnd.Next(10, 60)));
                         break;
-                    case 1: // если 1 то виноград
+                    case 1: 
                         this.KinoList.Add(new Movie(rnd.Next(1920, 2024) ,rnd.Next(1,5),rnd.Next(30, 360), rnd.Next(0, 12) ));
                         break;
-                    case 2: // если 2 то арбуз
+                    case 2: 
                         this.KinoList.Add(new Show (rnd.Next(1960, 2024),rnd.Next(1, 50), rnd.Next(4, 1000)));
                         break;
-                        // появление других чисел маловероятно
+                       
                 }
             }
             this.KinoBar.Maximum = KinoList.Count;
