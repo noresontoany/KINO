@@ -1,3 +1,4 @@
+using System.IO;
 using System.Windows.Forms;
 using static KINO.KinoLogic;
 
@@ -8,13 +9,21 @@ namespace KINO
         public Form1()
         {
             InitializeComponent();
+
+            getImges();
+
         }
+
         List<Kino> KinoList = new List<Kino>();
+
+        List <Image> ImageList = new List<Image>();
+
 
         private void btnRefill_Click(object sender, EventArgs e)
         {
-
+            
             this.KinoList.Clear();
+            kinoBox.Image = null;
            
             var rnd = new Random();
             for (var i = 0; i < 10; ++i)
@@ -71,49 +80,50 @@ namespace KINO
         }
 
 
-        private void getImg (String pathToFile)
+        private void getImges()
         {
-            try
+            foreach (var fileName in Directory.GetFiles(@"img", "*.jpg"))
             {
-                // Retrieve the image.
-                Bitmap image = new Bitmap(@"img\tv\2.jpg", true);
-
-                int x, y;
-
-                // Loop through the images pixels to reset color.
-                for (x = 0; x < image.Width; x++)
+                try
                 {
-                    for (y = 0; y < image.Height; y++)
+                    Bitmap image = new Bitmap(fileName, true);
+
+                    int x, y;
+
+                    for (x = 0; x < image.Width; x++)
                     {
-                        Color pixelColor = image.GetPixel(x, y);
-                        Color newColor = Color.FromArgb(pixelColor.R, 0, 0);
-                        image.SetPixel(x, y, newColor);
+                        for (y = 0; y < image.Height; y++)
+                        {
+                            Color pixelColor = image.GetPixel(x, y);
+                            Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                            image.SetPixel(x, y, newColor);
+                        }
                     }
+
+                    ImageList.Add(image);
+
+
+                    
+
                 }
-
-                kinoBox.Image = image;
+                catch (ArgumentException)
+                {
+                    MessageBox.Show(Environment.CurrentDirectory);
+                }
             }
-   
-            catch (ArgumentException)
-            {
-                MessageBox.Show("There was an error." +
-                    "Check the path to the image file.");
-            }
-
-            
 
 
         }
 
         private void btnGet_Click(object sender, EventArgs e)
         {
+            
             var rnd = new Random();
             // если список пуст, то напишем что пусто и выйдем из функции
             if (this.KinoList.Count == 0)
             {
                 txtOut.Text = "ѕусто Q_Q";
-
-                getImg(@"img\0.jpg");
+                kinoBox.Image = ImageList[0];
                 return;
             }
 
@@ -122,27 +132,30 @@ namespace KINO
 
             if (kino is TVshow)
             {
-                getImg(@"img\tv\2.jpg");
+                kinoBox.Image = ImageList[rnd.Next(1,3)];
                 //kinoBox.Image = getImg(string.Format("img\\tv\\{0}.jpg", rnd.Next(1, 10)));
             }
             else if (kino is Movie)
             {
-                getImg(@"img\tv\2.jpg");
+                kinoBox.Image = ImageList[rnd.Next(4, 6)];
                 //kinoBox.Image = getImg(string.Format("img\\movie\\{0}.jpg", rnd.Next(1, 10)));
             }
             else if (kino is Show)
             {
+                kinoBox.Image = ImageList[rnd.Next(7, 9)];
                 //kinoBox.Image = getImg(string.Format("img\\serial\\{0}.jpg", rnd.Next(1, 10)));
             }
-            // тут вам не реальность, вз€тие это на самом деле создание указател€ на область в пам€ти
-            // где хранитс€ экземпл€р класса, так что если хочешь удалить, делай это сам
+            
+
+
             this.KinoList.RemoveAt(0);
+
             this.KinoBar.Value = KinoList.Count;
-            // ну а теперь предложим покупателю его фрукт
+
             txtOut.Text = kino.GetInfo();
 
 
-            // обновим информацию о количестве товара на форме
+         
             ShowInfo();
         }
     }

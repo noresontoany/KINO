@@ -39,10 +39,9 @@
             // 
             // btnRefill
             // 
-            btnRefill.Location = new Point(84, 32);
-            btnRefill.Margin = new Padding(2);
+            btnRefill.Location = new Point(120, 53);
             btnRefill.Name = "btnRefill";
-            btnRefill.Size = new Size(285, 20);
+            btnRefill.Size = new Size(407, 33);
             btnRefill.TabIndex = 0;
             btnRefill.Text = "Заполняем";
             btnRefill.UseVisualStyleBackColor = true;
@@ -51,30 +50,27 @@
             // txtInfo
             // 
             txtInfo.BorderStyle = BorderStyle.None;
-            txtInfo.Location = new Point(84, 71);
-            txtInfo.Margin = new Padding(2);
+            txtInfo.Location = new Point(120, 118);
             txtInfo.Name = "txtInfo";
             txtInfo.ReadOnly = true;
-            txtInfo.Size = new Size(283, 51);
+            txtInfo.Size = new Size(404, 85);
             txtInfo.TabIndex = 1;
             txtInfo.Text = "";
             // 
             // txtOut
             // 
-            txtOut.Location = new Point(84, 156);
-            txtOut.Margin = new Padding(2);
+            txtOut.Location = new Point(120, 260);
             txtOut.Name = "txtOut";
             txtOut.ReadOnly = true;
-            txtOut.Size = new Size(176, 88);
+            txtOut.Size = new Size(250, 144);
             txtOut.TabIndex = 2;
             txtOut.Text = "";
             // 
             // btnGet
             // 
-            btnGet.Location = new Point(274, 156);
-            btnGet.Margin = new Padding(2);
+            btnGet.Location = new Point(391, 260);
             btnGet.Name = "btnGet";
-            btnGet.Size = new Size(101, 86);
+            btnGet.Size = new Size(144, 143);
             btnGet.TabIndex = 3;
             btnGet.Text = "Забираем";
             btnGet.UseVisualStyleBackColor = true;
@@ -82,32 +78,31 @@
             // 
             // KinoBar
             // 
-            KinoBar.Location = new Point(84, 118);
-            KinoBar.Margin = new Padding(2);
+            KinoBar.Location = new Point(120, 197);
             KinoBar.Name = "KinoBar";
-            KinoBar.Size = new Size(283, 20);
+            KinoBar.Size = new Size(404, 33);
             KinoBar.TabIndex = 4;
             // 
             // kinoBox
             // 
-            kinoBox.Location = new Point(443, 31);
+            kinoBox.Location = new Point(616, 55);
             kinoBox.Name = "kinoBox";
-            kinoBox.Size = new Size(267, 213);
+            kinoBox.Size = new Size(380, 348);
+            kinoBox.SizeMode = PictureBoxSizeMode.StretchImage;
             kinoBox.TabIndex = 5;
             kinoBox.TabStop = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(743, 270);
+            ClientSize = new Size(1061, 450);
             Controls.Add(kinoBox);
             Controls.Add(KinoBar);
             Controls.Add(btnGet);
             Controls.Add(txtOut);
             Controls.Add(txtInfo);
             Controls.Add(btnRefill);
-            Margin = new Padding(2);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)kinoBox).EndInit();
