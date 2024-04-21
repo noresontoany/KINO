@@ -82,7 +82,7 @@ namespace KINO
 
         private void getImges()
         {
-            foreach (var fileName in Directory.GetFiles(@"img", "*.jpg"))
+            foreach (var fileName in Directory.GetFiles(@"..\..\..\..\img", "*.jpg"))
             {
                 try
                 {
