@@ -14,9 +14,15 @@ namespace KINO
 
         }
 
-        List<Kino> KinoList = new List<Kino>();
+        private List<Kino> KinoList = new List<Kino>();
 
-        List <Image> ImageList = new List<Image>();
+        private List<Image> ImageListEnd = new List<Image>();
+
+        private List<Image> ImageListTV = new List<Image>();
+
+        private List<Image> ImageListMovie = new List<Image>();
+
+        private List<Image> ImageListSerial = new List<Image>();
 
 
         private void btnRefill_Click(object sender, EventArgs e)
@@ -59,7 +65,7 @@ namespace KINO
             foreach (var kino in this.KinoList)
             {
                 
-                if (kino is TVshow) // читается почти как чистый инглиш, "если fruit есть Мандарин"
+                if (kino is TVshow) 
                 {
                     TVshowCount += 1;
                 }
@@ -82,33 +88,65 @@ namespace KINO
 
         private void getImges()
         {
-            foreach (var fileName in Directory.GetFiles(@"..\..\..\..\img", "*.jpg"))
+
+            foreach (var fileName in Directory.GetFiles(@"..\..\..\..\img\end", "*.*"))
             {
                 try
                 {
                     Bitmap image = new Bitmap(fileName, true);
 
-                    int x, y;
-
-                    for (x = 0; x < image.Width; x++)
-                    {
-                        for (y = 0; y < image.Height; y++)
-                        {
-                            Color pixelColor = image.GetPixel(x, y);
-                            Color newColor = Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
-                            image.SetPixel(x, y, newColor);
-                        }
-                    }
-
-                    ImageList.Add(image);
-
-
-                    
+                    ImageListEnd.Add(image);
+         
 
                 }
                 catch (ArgumentException)
                 {
-                    MessageBox.Show(Environment.CurrentDirectory);
+                    MessageBox.Show("wrong file format or filename by end");
+                }
+            }
+
+            foreach (var fileName in Directory.GetFiles(@"..\..\..\..\img\tv", "*.*"))
+            {
+                try
+                {
+                    Bitmap image = new Bitmap(fileName, true);
+         
+                    ImageListTV.Add(image);
+                 
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("wrong file format or filename by tv");
+                }
+            }
+
+            foreach (var fileName in Directory.GetFiles(@"..\..\..\..\img\movie", "*.*"))
+            {
+                try
+                {
+                    Bitmap image = new Bitmap(fileName, true);
+              
+                    ImageListMovie.Add(image);
+
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("wrong file format or filename by movie");
+                }
+            }
+
+            foreach (var fileName in Directory.GetFiles(@"..\..\..\..\img\serial", "*.*"))
+            {
+                try
+                {
+                    Bitmap image = new Bitmap(fileName, true);
+   
+                    ImageListSerial.Add(image);
+
+                }
+                catch (ArgumentException)
+                {
+                    MessageBox.Show("wrong file format or filename by serial");
                 }
             }
 
@@ -119,31 +157,30 @@ namespace KINO
         {
             
             var rnd = new Random();
-            // если список пуст, то напишем что пусто и выйдем из функции
+          
             if (this.KinoList.Count == 0)
             {
                 txtOut.Text = "Пусто Q_Q";
-                kinoBox.Image = ImageList[0];
+                kinoBox.Image = ImageListEnd[rnd.Next(0, ImageListEnd.Count)];
                 return;
             }
 
-            // взяли первый фрукт
+      
             var kino = this.KinoList[0];
 
             if (kino is TVshow)
             {
-                kinoBox.Image = ImageList[rnd.Next(1,3)];
-                //kinoBox.Image = getImg(string.Format("img\\tv\\{0}.jpg", rnd.Next(1, 10)));
+                kinoBox.Image = ImageListTV[rnd.Next(0, ImageListTV.Count)];
+                
             }
             else if (kino is Movie)
             {
-                kinoBox.Image = ImageList[rnd.Next(4, 6)];
-                //kinoBox.Image = getImg(string.Format("img\\movie\\{0}.jpg", rnd.Next(1, 10)));
+                kinoBox.Image = ImageListMovie[rnd.Next(0, ImageListMovie.Count)];
+                
             }
             else if (kino is Show)
             {
-                kinoBox.Image = ImageList[rnd.Next(7, 9)];
-                //kinoBox.Image = getImg(string.Format("img\\serial\\{0}.jpg", rnd.Next(1, 10)));
+                kinoBox.Image = ImageListSerial[rnd.Next(0, ImageListSerial.Count)];
             }
             
 
@@ -153,8 +190,6 @@ namespace KINO
             this.KinoBar.Value = KinoList.Count;
 
             txtOut.Text = kino.GetInfo();
-
-
          
             ShowInfo();
         }
