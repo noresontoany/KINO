@@ -1,6 +1,7 @@
 using System.IO;
 using System.Windows.Forms;
 using static KINO.KinoLogic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace KINO
 {
@@ -29,6 +30,9 @@ namespace KINO
         {
             
             this.KinoList.Clear();
+            this.txtOut.Clear();
+            this.txtInfo.Clear();
+            this.namesList.Items.Clear();
             kinoBox.Image = null;
            
             var rnd = new Random();
@@ -38,18 +42,22 @@ namespace KINO
                 {
                     case 0: 
                         this.KinoList.Add(new TVshow(rnd.Next(1950, 2024), rnd.Next(1, 40), rnd.Next(10, 60)));
+                        namesList.Items.Add("TVshow");
                         break;
                     case 1: 
                         this.KinoList.Add(new Movie(rnd.Next(1920, 2024) ,rnd.Next(1,5),rnd.Next(30, 360), rnd.Next(0, 12) ));
+                        namesList.Items.Add("Movie");
                         break;
                     case 2: 
                         this.KinoList.Add(new Show (rnd.Next(1960, 2024),rnd.Next(1, 50), rnd.Next(4, 1000)));
+                        namesList.Items.Add("Serial");
                         break;
                        
                 }
             }
             this.KinoBar.Maximum = KinoList.Count;
             this.KinoBar.Value = KinoList.Count;
+            this.KinoBar.ForeColor = Color.Red;
 
             ShowInfo();
         }
@@ -116,7 +124,7 @@ namespace KINO
                 }
                 catch (ArgumentException)
                 {
-                    MessageBox.Show("wrong file format or filename by tv");
+                    MessageBox.Show("wrong file format or filename by tv " + fileName);
                 }
             }
 
@@ -131,7 +139,7 @@ namespace KINO
                 }
                 catch (ArgumentException)
                 {
-                    MessageBox.Show("wrong file format or filename by movie");
+                    MessageBox.Show("wrong file format or filename by movie " + fileName);
                 }
             }
 
@@ -146,7 +154,7 @@ namespace KINO
                 }
                 catch (ArgumentException)
                 {
-                    MessageBox.Show("wrong file format or filename by serial");
+                    MessageBox.Show("wrong file format or filename by serial " + fileName);
                 }
             }
 
@@ -186,6 +194,7 @@ namespace KINO
 
 
             this.KinoList.RemoveAt(0);
+            this.namesList.Items.RemoveAt(0);
 
             this.KinoBar.Value = KinoList.Count;
 

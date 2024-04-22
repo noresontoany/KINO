@@ -34,6 +34,7 @@
             btnGet = new Button();
             KinoBar = new ProgressBar();
             kinoBox = new PictureBox();
+            namesList = new ListBox();
             ((System.ComponentModel.ISupportInitialize)kinoBox).BeginInit();
             SuspendLayout();
             // 
@@ -78,9 +79,12 @@
             // 
             // KinoBar
             // 
+            KinoBar.ForeColor = Color.GreenYellow;
             KinoBar.Location = new Point(120, 197);
+            KinoBar.MarqueeAnimationSpeed = 1000;
             KinoBar.Name = "KinoBar";
             KinoBar.Size = new Size(404, 33);
+            KinoBar.Step = 100;
             KinoBar.TabIndex = 4;
             // 
             // kinoBox
@@ -92,11 +96,22 @@
             kinoBox.TabIndex = 5;
             kinoBox.TabStop = false;
             // 
+            // namesList
+            // 
+            namesList.BackColor = SystemColors.Window;
+            namesList.FormattingEnabled = true;
+            namesList.ItemHeight = 25;
+            namesList.Location = new Point(1035, 49);
+            namesList.Name = "namesList";
+            namesList.Size = new Size(170, 354);
+            namesList.TabIndex = 6;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1061, 450);
+            ClientSize = new Size(1254, 450);
+            Controls.Add(namesList);
             Controls.Add(kinoBox);
             Controls.Add(KinoBar);
             Controls.Add(btnGet);
@@ -117,5 +132,6 @@
         private Button btnGet;
         private ProgressBar KinoBar;
         private PictureBox kinoBox;
+        private ListBox namesList;
     }
 }

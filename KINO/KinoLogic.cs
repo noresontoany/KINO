@@ -8,6 +8,7 @@ namespace KINO
 {
     public class KinoLogic
     {
+
         public class Kino {
             public int Year = 0;
             public virtual String GetInfo()
